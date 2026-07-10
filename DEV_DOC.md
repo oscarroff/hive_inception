@@ -16,3 +16,7 @@ To exec into a container: docker compose exec mariadb mariadb -u appuser -p appd
 
 ## Data Storage & Persistence ##
 How to find the project data and how it persists
+
+Browser → Nginx (usually 443)
+Nginx → WordPress php-fpm (9000)
+WordPress → MariaDB (3306)

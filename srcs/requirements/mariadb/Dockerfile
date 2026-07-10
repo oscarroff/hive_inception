@@ -39,5 +39,5 @@ EXPOSE 3306
 
 # /init.sh is the default command when a container starts
 # the init script becomes PID 1
-# script should end with exec mysqld ... otherwise container exists
+# script should end with exec mysqld ... otherwise container exits
 CMD ["/usr/local/bin/init.sh"]

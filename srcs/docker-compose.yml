@@ -16,8 +16,9 @@ services:
       - inception
     restart: always
     healthcheck:
-      test: ["CMD-SHELL", "mariadb-admin --socket=/run/mysqld/mysqld.sock \
-        -uroot -p\"$${MYSQL_ROOT_PASSWORD}\" ping --silent"]
+      test: ["CMD-SHELL", "mariadb-admin protocol=socket \
+        --socket=/run/mysqld/mysqld.sock -uroot \
+        -p\"$${MYSQL_ROOT_PASSWORD}\" ping --silent"]
       interval: 10s
       timeout: 5s
       retries: 5

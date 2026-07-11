@@ -36,12 +36,14 @@ fi
 mysqld --user=mysql --skip-networking --socket="$SOCKET" & pid="$!"
 
 # Wait until server is ready
-until mariadb-admin --socket="$SOCKET" ping >/dev/null 2>&1; do
+until mariadb-admin --protocol=socket --socket="$SOCKET" ping >/dev/null 2>&1; do
     sleep 1
 done
 
 # Setup user and password from .env
-DB_CMD=(mariadb --socket="$SOCKET" -e)
+# DB_CMD=(mariadb --socket="$SOCKET" -e)
+DB_CMD=(mariadb --protocol=socket --socket="$SOCKET" -uroot \
+-p"${MYSQL_ROOT_PASSWORD}" -e)
 "${DB_CMD[@]}" "CREATE DATABASE IF NOT EXISTS \`${MYSQL_DATABASE}\`;"
 "${DB_CMD[@]}" "CREATE USER IF NOT EXISTS '${MYSQL_USER}'@'%' \
 IDENTIFIED BY '${MYSQL_PASSWORD}';"
@@ -50,7 +52,7 @@ IDENTIFIED BY '${MYSQL_PASSWORD}';"
 "${DB_CMD[@]}" "FLUSH PRIVILEGES;"
 
 # Stop background MariaDB after changes have been made
-mariadb-admin --socket="$SOCKET" -uroot \
+mariadb-admin --protocol=socket --socket="$SOCKET" -uroot \
 -p"${MYSQL_ROOT_PASSWORD}" shutdown || kill "$pid"
 wait "$pid" 2>/dev/null || true
 

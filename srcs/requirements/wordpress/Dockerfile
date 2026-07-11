@@ -24,7 +24,7 @@ RUN apt-get update \
 # ca-certificates - allows us to use https
 
 # Create runtime directory for php-fpm socket/pid if needed
-RUN	mkdir -p /run/php
+RUN mkdir -p /run/php
 
 # Copy configs and scripts to container
 COPY conf/www.conf /etc/php/8.2/fpm/pool.d/www.conf

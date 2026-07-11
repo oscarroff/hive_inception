@@ -3,19 +3,14 @@ set -eu
 
 # Required env vars
 required_vars=(
+  DOMAIN_NAME
   MYSQL_DATABASE
   MYSQL_USER
   MYSQL_PASSWORD
   MYSQL_HOST
-  WP_ADMIN_USER
-  WP_ADMIN_PASSWORD
-  WP_ADMIN_EMAIL
-  WP_USER
-  WP_USER_PASSWORD
-  WP_USER_EMAIL
-  DOMAIN_NAME
 )
 
+# Check required env vars to see if they are set
 for var in "${required_vars[@]}"; do
   if [ -z "${!var:-}" ]; then
     echo "Error: required environment variable '$var' is not set or empty." >&2
@@ -23,12 +18,20 @@ for var in "${required_vars[@]}"; do
   fi
 done
 
+# Optional WordPress vars with safe defaults
+WP_ADMIN_USER="${WP_ADMIN_USER:-admin}"
+WP_ADMIN_PASSWORD="${WP_ADMIN_PASSWORD:-change-me-admin-pass}"
+WP_ADMIN_EMAIL="${WP_ADMIN_EMAIL:-admin@example.com}"
+WP_USER="${WP_USER:-user}"
+WP_USER_PASSWORD="${WP_USER_PASSWORD:-change-me-user-pass}"
+WP_USER_EMAIL="${WP_USER_EMAIL:-user@example.com}"
+
 mkdir -p /var/www/html
 chown -R www-data:www-data /var/www/html
 
 cd /var/www/html
 
-# Install wp-cli once (lightweight approach for setup)
+# Install wp-cli once
 if [ ! -f /usr/local/bin/wp ]; then
   curl -fsSL https://raw.githubusercontent.com/wp-cli/wp-cli/v2.10.0/phar/wp-cli.phar -o /usr/local/bin/wp
   chmod +x /usr/local/bin/wp

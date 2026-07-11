@@ -17,6 +17,11 @@ RUN apt-get update \
 	mariadb-client \
 	ca-certificates \
 && rm -rf /var/lib/apt/lists/*
+# php-fpm - executes the WordPress PHP continer, receives requests from nginx
+# php-mysql - extension to connect to MariaDB
+# curl - used to download WordPress files during init
+# mariadb-client - useful for 'wait until DB is ready'
+# ca-certificates - allows us to use https
 
 # Create runtime directory for php-fpm socket/pid if needed
 RUN	mkdir -p /run/php

@@ -1,4 +1,4 @@
-FROM debian:12
+FROM debian:bullseye
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \

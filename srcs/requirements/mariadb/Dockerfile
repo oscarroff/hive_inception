@@ -10,7 +10,8 @@ FROM debian:12
 # Refresh package index, install MariaDB without interactive prompts and cleanup
 # the apt cache to keep files small
 RUN apt-get update \
-&& apt-get install -y --no-install-recommends mariadb-server \
+&& apt-get install -y --no-install-recommends \
+	mariadb-server \
 && rm -rf /var/lib/apt/lists/*
 
 # Copy the MySQL/MariaDB configuration file which controls:

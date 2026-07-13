@@ -10,23 +10,33 @@
 #                                                                              #
 # **************************************************************************** #
 
-COMPOSE = docker compose \
-		  -f src/docker-compose.yml \
-		  --project-directory srcs
+NAME = inception
+COMPOSE = docker compose -f srcs/docker-compose.yml --env-file srcs/.env
+
+all: up
 
 up:
-	$(COMPOSE) up -d
+	@mkdir -p /home/$(USER)/data/mariadb
+	@mkdir -p /home/$(USER)/data/wordpress
+	$(COMPOSE) up -d --build
 
 down:
 	$(COMPOSE) down
 
-build:
-	$(COMPOSE) build
+clean:
+	$(COMPOSE) down -v
+
+fclean: clean
+	@sudo rm -rf /home/$(USER)/data/mariadb
+	@sudo rm -rf /home/$(USER)/data/wordpress
+	@docker system prune -af
+
+re: fclean up
 
 logs:
 	$(COMPOSE) logs -f
 
-clean:
-	$(COMPOSE) down -v
+ps:
+	$(COMPOSE) ps
 
-.PHONY: up down build logs clean
+.PHONY: all up down clean fclean re logs ps

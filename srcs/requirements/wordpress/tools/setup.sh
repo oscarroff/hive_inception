@@ -32,4 +32,4 @@ if [ ! -f /var/www/html/wp-config.php ]; then
 fi
 
 mkdir -p /run/php
-exec php-fpm8.2 -F
+exec /usr/sbin/php-fpm8.2 -F

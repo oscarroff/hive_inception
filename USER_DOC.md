@@ -2,7 +2,11 @@
 ### A guide for users and administrators of inception ###
 
 ## Services ##
-Understand what services are provided by the stack
+Inception is a full-stack project that requires the use of 3 services: mariaDB, WordPress and nginx. Each service is installed and setup in its own dedicated docker container running on the penultimate stable release of Debian (in this case 12 bookworm).
+The services and their roles are as follows:-
+- mariaDB: 
+- WordPress
+- Nginx
 
 ## Setup & Exit ##
 How to start and stop the project

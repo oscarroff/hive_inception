@@ -11,7 +11,7 @@ if [ ! -d "/var/lib/mysql/mysql" ]; then
 fi
 
 # mysqld_safe --datadir=/var/lib/mysql &
-mariadbd --skip-networking --datadir=/var/lib/mysql &
+mariadbd --user=mysql --skip-networking --datadir=/var/lib/mysql &
 pid="$!"
 
 # Wait until server accepts local socket connections (no auth needed)

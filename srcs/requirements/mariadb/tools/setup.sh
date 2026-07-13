@@ -6,10 +6,12 @@ chown -R mysql:mysql /run/mysqld
 chown -R mysql:mysql /var/lib/mysql
 
 if [ ! -d "/var/lib/mysql/mysql" ]; then
-	mysql_install_db --user=mysql --datadir=/var/lib/mysql
+	# mysql_install_db --user=mysql --datadir=/var/lib/mysql
+	mariadb-install-db --user=mysql --socket=/run/mysqld/mysqld.sock --datadir=/var/lib/mysql
 fi
 
-mysqld_safe --datadir=/var/lib/mysql &
+# mysqld_safe --datadir=/var/lib/mysql &
+mariadbd --skip-networking --datadir=/var/lib/mysql &
 pid="$!"
 
 # Wait until server accepts local socket connections (no auth needed)
@@ -29,4 +31,5 @@ mariadb -uroot -p"${MYSQL_ROOT_PASSWORD}" -e "FLUSH PRIVILEGES;"
 mariadb-admin -uroot -p"${MYSQL_ROOT_PASSWORD}" shutdown
 wait "$pid" || true
 
-exec mysqld --user=mysql --datadir=/var/lib/mysql
+# exec mysqld --user=mysql --datadir=/var/lib/mysql
+exec mariadbd --user=mysql --datadir=/var/lib/mysql --socket=/run/mysqld/mysqld.sock --bind-address=0.0.0.0

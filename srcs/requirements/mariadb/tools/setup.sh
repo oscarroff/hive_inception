@@ -1,11 +1,11 @@
 #!/bin/bash
-set -e
 
+set -e
 mkdir -p /run/mysqld
 chown -R mysql:mysql /run/mysqld
 chown -R mysql:mysql /var/lib/mysql
 
-if [ ! -d "/var/lib/mysql/mysql" ]; then
+if [ ! -f /var/lib/mysql/.inception_initialized ]; then
 	mariadb-install-db --user=mysql --socket=/run/mysqld/mysqld.sock --datadir=/var/lib/mysql
 
 	mariadbd --user=mysql --skip-networking --datadir=/var/lib/mysql &
@@ -23,6 +23,8 @@ if [ ! -d "/var/lib/mysql/mysql" ]; then
 
 	mariadb-admin -uroot -p"${MYSQL_ROOT_PASSWORD}" shutdown
 	wait "$pid" || true
+
+	touch /var/lib/mysql/.inception_initialized
 fi
 
 exec mariadbd --user=mysql --datadir=/var/lib/mysql --socket=/run/mysqld/mysqld.sock --bind-address=0.0.0.0

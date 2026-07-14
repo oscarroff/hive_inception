@@ -70,5 +70,5 @@ Additionally access to the website can be made local via X11:
 - `sudo nano /etc/ssh/sshd_config`
 - Add `X11Forwarding yes` and `X11DisplayOffset 10`
 - Then restart ssh `sudo systemctl restart ssh`
-3. Connect from local host via SSH to X11 `ssh -X -p 4243 user@localhost`
-4. Launch firefox from VM `firefox-esr`
+3. In a new host terminal connect via SSH to X11 `ssh -X -p 4243 user@localhost`
+4. In the same terminal run `firefox-esr`

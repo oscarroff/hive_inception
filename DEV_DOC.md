@@ -31,8 +31,15 @@ Once launched the containers should remaining running and restart in case of cra
 
 ## Commands ##
 How to use commands to manage the containers and volumes
-
-To exec into a container: docker compose exec mariadb mariadb -u appuser -p appdb
+N.B. Run all docker commands from the docker root `srcs/`
+- View containers: `docker compose ps`
+- View volumes: `docker volume ls`
+- View network commands: `docker network`
+- Run commands inside a container: `docker compose exec <container-name> <command>`
+- Login to the database: `mariadb -u <database-user> -p <database-name>`
+- View resource usage: `docker stats`
+- Check built images: `docker images`
+- Force rebuild of a service: `docker compose build --no-cache <service>`
 
 ## Data Storage & Persistence ##
 How to find the project data and how it persists

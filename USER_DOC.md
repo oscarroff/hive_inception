@@ -4,7 +4,7 @@
 N.B. The following explanations assume the project is installed locally. For installation inside a virtual machine [see VM installation](#VM-Installation).
 
 ## Services ##
-Inception is a full-stack project that requires the use of 3 services: mariaDB, WordPress and nginx. Each service is installed and setup in its own dedicated docker container running on the penultimate stable release of Debian (in this case 12 bookworm).
+Inception is a full-stack project that requires the use of 3 services: mariaDB, WordPress and nginx. Each service is installed and setup in its own dedicated docker container running on the penultimate stable release of Debian (in this case 12 bookworm as of July 2026).
 The services and their roles are as follows:-
 - mariaDB: backend open-source database management system
 - WordPress: frontend content management system
@@ -53,14 +53,14 @@ To view the logs of the 3 services:
 2. Run the command `make logs`
 
 ## VM Installation ##
-At Hive, Helsinki (a 42 network school) it is essential to run Inception inside a virtual machine in order to gain sudo rights. In the following examples a headless install of Debian 13 is assumed.
+At Hive, Helsinki (a 42 network school) it is essential to run Inception inside a virtual machine in order to gain sudo rights. In the following examples a headless install of Debian 13 is assumed (N.B. the penultimate stable rule does not apply for the VM) running on a VirtualBox hypervisor.
 ### Credentials ###
 Ensure that you have a user with sudo rights on the VM. If necessary edit the sudoers with the command `sudo visudo`
 ### Ports ###
 For the following `ssh` commands to work we need to setup port forwarding
 1. Set Adapter 1 in the VM settings to NAT
 2. Open the Port Forwarding window
-3. Add a rule for terminal access e.g. name: ssh, protocol: TCP, host IP: 127.0.0.1, host port: 4243, guest port 4242
+3. Add a rule for terminal access e.g. name: ssh, protocol: TCP, host IP: 127.0.0.1, host port: 4243, guest port 22
 4. Add a rule for X11 access e.g. name: xwin, protocol: TCP, host IP: 127.0.0.1, host port: 8443, guest port 443
 ### SSH ###
 In order to interact with the VM locally we can then use ssh with the command: `ssh -p 4243 user@localhost`

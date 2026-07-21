@@ -8,7 +8,7 @@ How to set up the environment from scratch with prerequisites, configuration fil
 - docker, curl, apt
 
 ### Configuration Files & Secrets ###
-In addition to the files from repository, inception requires a properly configured .env file to build. An example is provided in the repository srcs/.env_example. This file should contain a set of secrets and credentials and be stored at srcs/.env. Required variables and secrets are: `DOMAIN_NAME, MYSQL_DATABASE, MYSQL_USER, MYSQL_PASSWORD, MYSQL_ROOT_PASSWORD`. Additionally recommended secrets are: `WP_ADMIN_USER, WP_ADMIN_PASSWORD, WP_ADMIN_EMAIL, WP_USER, WP_USER_PASSWORD, WP_USER_EMAIL`.
+In addition to the files from repository, inception requires a properly configured .env file to build. An example is provided in the repository `.env_example`. This file should contain a set of secrets and credentials and be stored at srcs/.env. Required variables and secrets are: `DOMAIN_NAME, MYSQL_DATABASE, MYSQL_USER, MYSQL_PASSWORD, MYSQL_ROOT_PASSWORD`. Additionally recommended secrets are: `WP_ADMIN_USER, WP_ADMIN_PASSWORD, WP_ADMIN_EMAIL, WP_USER, WP_USER_PASSWORD, WP_USER_EMAIL`.
 
 ## Build & Launch ##
 How to build and launch the project using the Makefile and Docker Compose

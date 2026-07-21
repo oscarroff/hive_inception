@@ -36,9 +36,10 @@ N.B. For instructions specific to inception within a virtual machine see USER_DO
 ## Resources ##
 List of references to the topic
 [Basic Docker Guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04)
+[Geeks-for-Geeks Tutorial](https://www.geeksforgeeks.org/devops/docker-tutorial/)
+[MariaDB Documentation](https://mariadb.com/docs/server)
+[nginx Beginner's Guide](https://nginx.org/en/docs/beginners_guide.html)
+[WP-CLI Install Guide](https://make.wordpress.org/cli/handbook/guides/installing/)
 
 ## AI Usage ##
 AI was used at three stages of this project, in the initial design, in drafting of the dockerfiles and scripts and finally in the debugging stage. AI usage was entirely with a ChatBot. The decision to avoid agentic-AI or IDE-integration was a conscious one to introduce more friction to the process and encourage more independent analysis, interaction with the tech-stack, problem-solving and comprehension.
-
-## Optional Extras ##
-Usage examples, feature list, technical choices

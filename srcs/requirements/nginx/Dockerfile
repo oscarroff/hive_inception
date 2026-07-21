@@ -8,6 +8,6 @@ COPY conf/nginx.conf /etc/nginx/nginx.conf
 COPY tools/setup.sh /setup.sh
 RUN chmod +x /setup.sh
 
-EXPOSE 8443
+EXPOSE 443
 
 CMD ["/setup.sh"]

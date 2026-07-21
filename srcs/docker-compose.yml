@@ -29,7 +29,7 @@ services:
       - wordpress
     restart: always
     ports:
-      - "8443:8443"
+      - "443:443"
     networks:
       - inception
     volumes:
